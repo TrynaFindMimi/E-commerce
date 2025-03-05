@@ -1,0 +1,259 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #333333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #FFFFFF;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FF9AA2;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FF9AA2;
+}
+
+.checkout-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.checkout-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333333;
+}
+
+.contenedor-principal {
+    display: flex;
+    gap: 20px;
+}
+
+.lista-productos {
+    flex: 2;
+}
+
+.producto-carrito {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.producto-carrito img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.producto-info {
+    flex-grow: 1;
+}
+
+.producto-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+}
+
+.producto-info p {
+    margin: 5px 0;
+    color: #666666;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cantidad button {
+    background-color: #FF9AA2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cantidad button:hover {
+    background-color: #FF7F89;
+}
+
+.cantidad span {
+    font-size: 16px;
+    color: #333333;
+}
+
+.eliminar {
+    background-color: #FF9AA2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.eliminar:hover {
+    background-color: #FF7F89;
+}
+
+.resumen-carrito {
+    flex: 1;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.resumen-carrito h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333333;
+}
+
+.resumen-carrito p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #666666;
+}
+
+.resumen-carrito .total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF9AA2;
+}
+
+.metodo-pago {
+    margin-bottom: 30px;
+}
+
+.metodo-pago h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #F0F0F0;
+    color: #333333;
+}
+
+button[type="submit"] {
+    background-color: #FF9AA2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #FF7F89;
+}
+
+.paypal-button, .cripto-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.paypal-button button, .cripto-button button {
+    background-color: #FF9AA2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.paypal-button button:hover, .cripto-button button:hover {
+    background-color: #FF7F89;
+}
+
+.cripto-button select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background-color: #F0F0F0;
+    color: #333333;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #F0F0F0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    color: #333333;
+}

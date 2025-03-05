@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Mi Tienda Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">E-commerce</div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="checkout-container">
+            <h1>Finalizar Compra</h1>
+
+            <div class="contenedor-principal">
+                <section class="lista-productos">
+                    <div class="producto-carrito">
+                        <img src="images/producto1.png" alt="Labubu Coca-Cola">
+                        <div class="producto-info">
+                            <h3>Labubu Coca-Cola</h3>
+                            <p>Edición especial en colaboración con Coca-Cola. Un diseño único para coleccionistas.</p>
+                            <p class="precio">300.00 Bs</p>
+                            <div class="cantidad">
+                                <button aria-label="Reducir cantidad">-</button>
+                                <span>1</span>
+                                <button aria-label="Aumentar cantidad">+</button>
+                            </div>
+                        </div>
+                        <button class="eliminar" aria-label="Eliminar producto">Eliminar</button>
+                    </div>
+
+                    <div class="producto-carrito">
+                        <img src="images/producto2.png" alt="Mokoko">
+                        <div class="producto-info">
+                            <h3>Mokoko</h3>
+                            <p>Diseño inspirado en la naturaleza, perfecto para amantes de los detalles únicos.</p>
+                            <p class="precio">250.00 Bs</p>
+                            <div class="cantidad">
+                                <button aria-label="Reducir cantidad">-</button>
+                                <span>2</span>
+                                <button aria-label="Aumentar cantidad">+</button>
+                            </div>
+                        </div>
+                        <button class="eliminar" aria-label="Eliminar producto">Eliminar</button>
+                    </div>
+
+                    <div class="producto-carrito">
+                        <img src="images/producto3.png" alt="Labubu Sitting Surprise">
+                        <div class="producto-info">
+                            <h3>Labubu Sitting Surprise</h3>
+                            <p>Una figura sentada con gestos divertidos, ideal para alegrar cualquier espacio.</p>
+                            <p class="precio">280.00 Bs</p>
+                            <div class="cantidad">
+                                <button aria-label="Reducir cantidad">-</button>
+                                <span>1</span>
+                                <button aria-label="Aumentar cantidad">+</button>
+                            </div>
+                        </div>
+                        <button class="eliminar" aria-label="Eliminar producto">Eliminar</button>
+                    </div>
+                </section>
+
+                <aside class="resumen-carrito">
+                    <h2>Resumen del Pedido</h2>
+                    <p>Subtotal: <span class="subtotal">830.00 Bs</span></p>
+                    <p>Envío: <span class="envio">50.00 Bs</span></p>
+                    <p class="total">Total: <span>880.00 Bs</span></p>
+
+                    <h2>Métodos de Pago</h2>
+                    <div class="metodo-pago">
+                        <h3>Tarjeta de Crédito/Débito</h3>
+                        <form id="form-tarjeta">
+                            <div class="form-group">
+                                <label for="numero-tarjeta">Número de Tarjeta</label>
+                                <input type="text" id="numero-tarjeta" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha-expiracion">Fecha de Expiración</label>
+                                <input type="text" id="fecha-expiracion" placeholder="MM/AA" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required>
+                            </div>
+                            <button type="submit">Pagar con Tarjeta</button>
+                        </form>
+                    </div>
+
+                    <div class="metodo-pago">
+                        <h3>Pagar con PayPal</h3>
+                        <div class="paypal-button">
+                            <p>Serás redirigido a PayPal para completar tu pago.</p>
+                            <button onclick="window.location.href='#'">Pagar con PayPal</button>
+                        </div>
+                    </div>
+
+                    <div class="metodo-pago">
+                        <h3>Pagar con Criptomonedas</h3>
+                        <div class="cripto-button">
+                            <p>Selecciona tu criptomoneda preferida:</p>
+                            <select id="criptomoneda">
+                                <option value="btc">Bitcoin (BTC)</option>
+                                <option value="eth">Ethereum (ETH)</option>
+                                <option value="usdt">Tether (USDT)</option>
+                            </select>
+                            <button onclick="window.location.href='#'">Pagar con Criptomonedas</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Proyecto E-commerce. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
