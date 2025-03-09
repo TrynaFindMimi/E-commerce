@@ -306,6 +306,6 @@ app.delete('/detalle_compra/:id', (req, res) => {
 
 // Puedes agregar rutas para compras y detalles de compra en el mismo formato
 
-app.listen(port, () => {
+app.listen(port,"0.0.0.0", () => {
     console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
 });
