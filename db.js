@@ -3,10 +3,10 @@ const mysql = require('mysql2');
 
 // Crear conexión a la base de datos
 const connection = mysql.createConnection({
-    host: 'sql10.freesqldatabase.com',
-    user: 'sql10766321',        // Cambia esto según tu configuración de MySQL
-    password: 'Vr9KeQvyyL',        // Contraseña de MySQL
-    database: 'sql10766321',
+    host: process.env.MYHOST,
+    user: process.env.MYUSER,        // Cambia esto según tu configuración de MySQL
+    password: process.env.MYPASS,        // Contraseña de MySQL
+    database: process.env.MYDB,
     port: 3306
 });
 

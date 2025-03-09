@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const contenedorDestacados = document.getElementById('destacados');
 
-    function guardarFavorito(idProducto) {
-        let favoritos = JSON.parse(localStorage.getItem('productosFavoritos')) || [];
+    function guardarCarrito(idProducto) {
+        let carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
         
-        if (!favoritos.includes(idProducto)) {
-            favoritos.push(idProducto);
-            localStorage.setItem('productosFavoritos', JSON.stringify(favoritos));
-            alert(`Producto ${idProducto} agregado a favoritos`);
+        if (!carrito.includes(idProducto)) {
+            carrito.push({id:idProducto,cantidad:1});
+            localStorage.setItem('productosCarrito', JSON.stringify(carrito));
+            alert(`Producto ${idProducto} agregado a carrito`);
         } else {
-            alert('Este producto ya está en tus favoritos');
+            alert('Este producto ya está en tu carrito');
         }
     }
+    localStorage.clear();
 
 
     fetch('http://localhost:3000/productos/destacados')
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion}</p>
                     <p class="precio">Precio: $${producto.precio_unitario}</p>
-                    <button onclick="guardarFavorito(${producto.id})">Agregar al Carrito </button>
+                    <button onclick="guardarCarrito(${producto.id})">Agregar al Carrito </button>
                 </article>   
                 `;
 
@@ -40,5 +41,5 @@ document.addEventListener('DOMContentLoaded', function() {
             contenedorDestacados.innerHTML = '<p class="error">Error al cargar productos destacados</p>';
         });
 
-        window.guardarFavorito = guardarFavorito;
+        window.guardarCarrito = guardarCarrito;
 });
