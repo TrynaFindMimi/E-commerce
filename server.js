@@ -153,6 +153,20 @@ app.put('/productos/:id',upload.single('imagen'), (req, res) => {
         res.json({ message: 'Producto actualizado' });
     });
 });
+app.patch('/productos/:id/stock', async (req, res) => {
+    db.query(
+            'UPDATE productos SET stock = stock - ? WHERE id = ?',
+            [req.body.cantidad, req.params.id],
+            (err, results) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                if (results.affectedRows === 0) {
+                    return res.status(404).json({ message: 'Producto no encontrado' });
+                }
+                res.json({ message: 'Producto actualizado' });
+            });
+});
 
 app.delete('/productos/:id', (req, res) => {
     const { id } = req.params;
@@ -164,6 +178,129 @@ app.delete('/productos/:id', (req, res) => {
             return res.status(404).json({ message: 'Producto no encontrado' });
         }
         res.json({ message: 'Producto eliminado' });
+    });
+});
+// Rutas para compra
+app.get('/compras', (req, res) => {
+    db.query('SELECT * FROM compras', (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+app.get('/compras/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('SELECT * FROM compras WHERE id = ?', [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Compra no encontrada' });
+        }
+        res.json(results[0]);
+    });
+});
+
+app.post('/compras', (req, res) => {
+    const { id_usuario, fecha_compra } = req.body;
+    db.query('INSERT INTO compras (id_usuario, fecha_compra) VALUES (?, ?)', [id_usuario, fecha_compra], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ id: results.insertId });
+    });
+});
+
+app.put('/compras/:id', (req, res) => {
+    const { id } = req.params;
+    const { id_usuario, fecha_compra } = req.body;
+    db.query('UPDATE compras SET id_usuario = ?, fecha_compra = ? WHERE id = ?', [id_usuario, fecha_compra, id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Compra no encontrada' });
+        }
+        res.json({ message: 'Compra actualizada' });
+    });
+});
+
+app.delete('/compras/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('DELETE FROM compras WHERE id = ?', [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Compra no encontrada' });
+        }
+        res.json({ message: 'Compra eliminada' });
+    });
+});
+
+// Rutas para detalle_compra
+app.get('/detalle_compra', (req, res) => {
+    db.query('SELECT * FROM detalle_compra', (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+app.get('/detalle_compra/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('SELECT * FROM detalle_compra WHERE id = ?', [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Detalle de compra no encontrado' });
+        }
+        res.json(results[0]);
+    });
+});
+
+app.post('/detalle_compra', (req, res) => {
+    const { id_compra, id_producto, cantidad } = req.body;
+    db.query('INSERT INTO detalle_compra (id_compra, id_producto, cantidad) VALUES (?, ?, ?)', 
+    [id_compra, id_producto, cantidad], 
+    (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ id: results.insertId });
+    });
+});
+
+app.put('/detalle_compra/:id', (req, res) => {
+    const { id } = req.params;
+    const { id_compra, id_producto, cantidad } = req.body;
+    db.query('UPDATE detalle_compra SET id_compra = ?, id_producto = ?, cantidad = ? WHERE id = ?', 
+    [id_compra, id_producto, cantidad, id], 
+    (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Detalle de compra no encontrado' });
+        }
+        res.json({ message: 'Detalle de compra actualizado' });
+    });
+});
+
+app.delete('/detalle_compra/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('DELETE FROM detalle_compra WHERE id = ?', [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: 'Detalle de compra no encontrado' });
+        }
+        res.json({ message: 'Detalle de compra eliminado' });
     });
 });
 

@@ -26,7 +26,7 @@
             <h1>Finalizar Compra</h1>
 
             <div class="contenedor-principal">
-                <section class="lista-productos">
+                <section class="lista-productos" id="total-pagar">
                     <div class="producto-carrito">
                         <img src="images/producto1.png" alt="Labubu Coca-Cola">
                         <div class="producto-info">
@@ -75,9 +75,9 @@
 
                 <aside class="resumen-carrito">
                     <h2>Resumen del Pedido</h2>
-                    <p>Subtotal: <span class="subtotal">830.00 Bs</span></p>
+                    <p>Subtotal: <span class="subtotal" id="subtotal">830.00 Bs</span></p>
                     <p>Envío: <span class="envio">50.00 Bs</span></p>
-                    <p class="total">Total: <span>880.00 Bs</span></p>
+                    <p class="total">Total: <span id="total">880.00 Bs</span></p>
 
                     <h2>Métodos de Pago</h2>
                     <div class="metodo-pago">
@@ -127,5 +127,6 @@
     <footer>
         <p>&copy; 2025 Proyecto E-commerce. Todos los derechos reservados.</p>
     </footer>
+    <script src="checkout.js"></script>
 </body>
 </html>
