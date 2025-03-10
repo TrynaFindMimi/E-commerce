@@ -1,0 +1,211 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff6f61;
+}
+
+.detalles-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 40px;
+}
+
+.imagenes-producto {
+    flex: 1;
+}
+
+.imagen-principal {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.miniaturas {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.miniaturas img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+}
+
+.miniaturas img:hover {
+    border: 2px solid #ff6f61;
+}
+
+.info-producto {
+    flex: 1;
+}
+
+.info-producto h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #ff6f61;
+}
+
+.info-producto .precio {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.info-producto .descripcion {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.opciones {
+    margin-bottom: 20px;
+}
+
+.opciones label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.opciones select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.cantidad {
+    margin-bottom: 20px;
+}
+
+.cantidad label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.cantidad input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.acciones button {
+    flex: 1;
+    background-color: #ff6f61;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.acciones button:hover {
+    background-color: #ff4a3d;
+}
+
+.acciones .btn-favoritos {
+    background-color: #333;
+}
+
+.acciones .btn-favoritos:hover {
+    background-color: #555;
+}
+
+.detalles-adicionales {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.detalles-adicionales h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #ff6f61;
+}
+
+.detalles-adicionales ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detalles-adicionales ul li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    color: #666;
+}

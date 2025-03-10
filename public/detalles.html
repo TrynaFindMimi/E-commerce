@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto - E-commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/detalles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">E-commerce</div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="favoritos.html">Favoritos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="detalles-container">
+            <div class="imagenes-producto">
+                <img src="images/producto1.png" alt="Labubu Coca-Cola" class="imagen-principal">
+                <div class="miniaturas">
+                    <img src="images/labubus1-mini1.png" alt="Miniatura 1">
+                    <img src="images/labubus1-mini2.png" alt="Miniatura 2">
+                    <img src="images/labubus1-mini3.png" alt="Miniatura 3">
+                </div>
+            </div>
+
+            <div class="info-producto">
+                <h1>Labubu Coca-Cola</h1>
+                <p class="precio">300.00 Bs</p>
+                <p class="descripcion">Edición especial en colaboración con Coca-Cola. Un diseño único para coleccionistas, con detalles exclusivos que lo hacen imprescindible.</p>
+
+                <div class="opciones">
+                    <label for="color">Color:</label>
+                    <select id="color">
+                        <option value="original">Original</option>
+                        <option value="edicion-especial">Edición Especial</option>
+                    </select>
+                </div>
+
+                <div class="cantidad">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" min="1" value="1">
+                </div>
+
+                <div class="acciones">
+                    <button class="btn-carrito">Agregar al Carrito</button>
+                    <button class="btn-favoritos">Agregar a Favoritos</button>
+                </div>
+
+                <div class="detalles-adicionales">
+                    <h2>Detalles Adicionales</h2>
+                    <ul>
+                        <li><strong>Material:</strong> Vinilo de alta calidad</li>
+                        <li><strong>Altura:</strong> 10 cm</li>
+                        <li><strong>Serie:</strong> The Monsters</li>
+                        <li><strong>Disponibilidad:</strong> En stock</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Proyecto E-commerce. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
