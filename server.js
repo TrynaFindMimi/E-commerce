@@ -13,7 +13,7 @@ const upload = multer({ storage: storage });
 // Middleware
 app.use(bodyParser.json(), cors({
     origin: '*' // Permite todos los orígenes (solo para desarrollo)
-  }));
+  }), express.static('public'));
 // Rutas para usuarios
 app.get('/usuarios', (req, res) => {
     db.query('SELECT * FROM usuarios', (err, results) => {
@@ -24,9 +24,9 @@ app.get('/usuarios', (req, res) => {
     });
 });
 
-app.get('/usuarios/:id', (req, res) => {
-    const { id } = req.params;
-    db.query('SELECT * FROM usuarios WHERE id = ?', [id], (err, results) => {
+app.get('/usuarios/:login', (req, res) => {
+    const { login } = req.params;
+    db.query('SELECT * FROM usuarios WHERE login = ?', [login], (err, results) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -207,6 +207,7 @@ app.post('/compras', (req, res) => {
     const { id_usuario, fecha_compra } = req.body;
     db.query('INSERT INTO compras (id_usuario, fecha_compra) VALUES (?, ?)', [id_usuario, fecha_compra], (err, results) => {
         if (err) {
+            console.error("error:",err)
             return res.status(500).json({ error: err.message });
         }
         res.status(201).json({ id: results.insertId });
