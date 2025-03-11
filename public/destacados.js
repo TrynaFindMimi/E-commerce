@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Este producto ya está en tu carrito');
         }
     }
-    localStorage.clear();
+    const idUsuario =JSON.parse(localStorage.getItem('usuario'));
+
+    if(!idUsuario){
+        window.location.href = "login.html";
+    }
 
 
     fetch('http://localhost:3000/productos/destacados')
