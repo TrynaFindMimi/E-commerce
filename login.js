@@ -1,29 +1,32 @@
-document.getElementById("login-form").addEventListener("submit", async function (event) {
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
     event.preventDefault();
+    localStorage.clear();
     
-    const email = document.getElementById("email").value;
+    const login = document.getElementById("nombre_usuario").value;
     const password = document.getElementById("password").value;
 
     try {
-        const response = await fetch("http://localhost:3000/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
+        const response = await fetch("http://localhost:3000/usuarios/"+login, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
         });
 
-        const data = await response.json();
-
         if (response.ok) {
-            localStorage.setItem("token", data.token);
-            alert("Login exitoso");
-            window.location.href = "dashboard.html"; // Redirigir después del login
+            const data = await response.json();
+            if (data.password === password){
+                alert("Inicio de sesión exitoso. Redirigiendo...");
+                localStorage.setItem('usuario', JSON.stringify(data));
+                window.location.href = "index.html";
+            } else{
+                alert("password no encontrado: ");
+            }
         } else {
-            alert("Error: " + data.message);
+            alert("Error en el inicio de sesión: " + data.message);
         }
     } catch (error) {
-        console.error("Error en la solicitud:", error);
-        alert("Error al conectar con el servidor");
+        alert("Error de conexión con el servidor");
+        console.error(error);
     }
 });
+})
