@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const subtotal = document.getElementById('subtotal');
     const totalCompra = document.getElementById('total');
     const totalPagarElement = document.getElementById('total-pagar'); 
-    const carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+    let carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
     let productos = [];
     function loadProductos() {
         fetch('http://localhost:3000/productos')

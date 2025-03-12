@@ -3,26 +3,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Obtener favoritos de localStorage o inicializar vacío
     let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    let productos = [];
+
+    function guardarCarritoFav(idProducto) {
+        let carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+        
+        if (!carrito.includes(idProducto)) {
+            carrito.push({id:idProducto,cantidad:1});
+            localStorage.setItem('productosCarrito', JSON.stringify(carrito));
+            alert(`Producto ${idProducto} agregado a Carrito`);
+        } else {
+            alert('Este producto ya está en tus Carrito');
+        }
+    }
+    const idUsuario =JSON.parse(localStorage.getItem('usuario'));
+
+    if(!idUsuario){
+        window.location.href = "login.html";
+    }
+
+
+    function loadProductos() {
+        fetch('http://localhost:3000/productos')
+            .then(response => response.json())
+            .then(items => {
+                productos = [...items]; 
+                getProductosfavoritos()
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+    function getProductosfavoritos() {
+        const productosEnFavoritos = productos.filter(producto => 
+            favoritos.some(item => item.id === producto.id));   
+        mostrarFavoritos(productosEnFavoritos);
+    }
 
     // Función para renderizar favoritos
-    function mostrarFavoritos() {
+    function mostrarFavoritos(productosFiltrados) {
         favoritosContainer.innerHTML = ""; // Limpiar el contenedor
 
-        if (favoritos.length === 0) {
+        if (productosFiltrados.length === 0) {
             favoritosContainer.innerHTML = "<p>No tienes productos en favoritos.</p>";
             return;
         }
 
-        favoritos.forEach((producto) => {
+        productosFiltrados.forEach(producto => {
             const productoElemento = document.createElement("div");
-            productoElemento.classList.add("producto-favorito");
-            productoElemento.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}">
+            productoElemento.className = 'producto-favorito';
+            productoElemento.innerHTML =`
+                <img src="data:image/jpeg;base64,${producto.imagen}" alt="${producto.nombre}">
                 <div class="producto-info">
                     <h3>${producto.nombre}</h3>
                     <p>${producto.descripcion}</p>
-                    <p class="precio">${producto.precio}</p>
-                    <button class="agregar-carrito">Agregar al Carrito</button>
+                    <p class="precio">${producto.precio_unitario}</p>
+                    <button onclick="guardarCarritoFav(${producto.id})">Agregar al Carrito</button>
                     <button class="eliminar" data-id="${producto.id}">Eliminar de Favoritos</button>
                 </div>
             `;
@@ -37,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function eliminarFavorito(id) {
         favoritos = favoritos.filter((producto) => producto.id !== parseInt(id));
         localStorage.setItem("favoritos", JSON.stringify(favoritos));
-        mostrarFavoritos();
+        getProductosfavoritos();
     }
 
     // Agregar eventos a los botones dinámicamente
@@ -50,6 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Mostrar favoritos al cargar la página
-    mostrarFavoritos();
+    loadProductos();
+    window.guardarCarritoFav = guardarCarritoFav;
 });

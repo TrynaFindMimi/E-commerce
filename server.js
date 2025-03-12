@@ -78,6 +78,7 @@ app.delete('/usuarios/:id', (req, res) => {
 app.get('/productos', (req, res) => {
     db.query('SELECT * FROM productos', (err, results) => {
         if (err) {
+            console.log("error al obtener producto:", err)
             return res.status(500).json({ error: err.message });
         }
         const productos = results.map(producto => ({

@@ -1,6 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const contenedorDestacados = document.getElementById('catalogo');
 
+    function guardarFavoritos(idProducto){
+        let favorito = JSON.parse(localStorage.getItem('favoritos')) || [];
+        if (!favorito.includes(idProducto)) {
+            favorito.push({id:idProducto,cantidad:1});
+            localStorage.setItem('favoritos', JSON.stringify(favorito));
+            alert(`Producto ${idProducto} agregado a favoritos`);
+        } else {
+            alert('Este producto ya está en tus favoritos');
+        }
+
+    }
+
     function guardarCarrito(idProducto) {
         let carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
         
@@ -34,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>${producto.descripcion}</p>
                     <p class="precio">Precio: $${producto.precio_unitario}</p>
                     <button onclick="guardarCarrito(${producto.id})">Agregar al Carrito </button>  
-                    <button>Agregar a Carrito</button>
+                    <button onclick="guardarFavoritos(${producto.id})">Favoritos</button>
                 `;
 
                 contenedorDestacados.appendChild(articulo);
@@ -44,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error al obtener productos destacados:', error);
             contenedorDestacados.innerHTML = '<p class="error">Error al cargar productos destacados</p>';
         });
+
+        window.guardarFavoritos = guardarFavoritos;
 
         window.guardarCarrito = guardarCarrito;
 });
