@@ -1,3 +1,5 @@
+import { ProductosProxy } from '/proxyProductos.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const contenedorDestacados = document.getElementById('destacados');
 
@@ -19,9 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    fetch('http://localhost:3000/productos/destacados')
-        .then(response => response.json())
-        .then(productos => {
+    ProductosProxy.productos           
+    .then(productos => {
             productos.forEach(producto => {
                 const articulo = document.createElement('div');
                 articulo.className = 'swiper-slide';
