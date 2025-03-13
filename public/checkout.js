@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
     const formTarjeta = document.getElementById('form-tarjeta');
     let productos = [];
+    let total = 0;
+    let fechaCompra = "";
     function loadProductos() {
         fetch('http://localhost:3000/productos')
             .then(response => response.json())
@@ -49,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function calcularTotal(productos) {
-        let total = 0;
         
         carrito.forEach(item => {
             const producto = productos.find(p => p.id === item.id);
@@ -61,8 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
         subtotal.textContent = `${total.toFixed(2)} Bs`;
         totalCompra.textContent = `${(total+50).toFixed(2)} Bs`;
     }
-    formTarjeta.addEventListener('submit', async function(e) {
-        e.preventDefault();
+    function agregarEventListeners() {
+        // Botones de cantidad
+        document.querySelectorAll('.pagar').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const accion = e.target.dataset.accion;
+                pagar(accion);
+            });
+        });
+        loadProductos();
+    }
+    async function pagar(accion) {
         
         const carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
         if(carrito.length === 0) {
@@ -74,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 1. Obtener datos necesarios
             const idUsuario =JSON.parse(localStorage.getItem('usuario')); // Asegúrate de tener este valor
             //const idUsuario = 1;
-            const fechaCompra = new Date().toISOString();
+            fechaCompra = new Date().toISOString();
 
             // 2. Crear la compra principal
             const compraResponse = await fetch('http://localhost:3000/compras', {
@@ -108,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 4. Actualizar stock y limpiar carrito
             await actualizarStock(carrito);
-            localStorage.removeItem('productosCarrito');
+            localStorage.setItem('datosCheckout', JSON.stringify({total:total, fechaCompra:fechaCompra, metodoPago:accion}));
             
             // 5. Redirigir a confirmación
             window.location.href = 'confirmacion.html';
@@ -117,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error en el proceso de compra:', error);
             alert('Error al procesar la compra: ' + error.message);
         }
-    });
+
+    };
 
     async function actualizarStock(carrito) {
         // Actualizar stock para cada producto
@@ -139,6 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!idUsuario){
         window.location.href = "login.html";
     }
+
+    agregarEventListeners();
         // Inicializar
-    loadProductos();
+    
 });

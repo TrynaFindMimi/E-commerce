@@ -197,7 +197,7 @@ nav ul li a:hover {
     color: #333333;
 }
 
-button[type="submit"] {
+.submit {
     background-color: #FF9AA2;
     color: white;
     padding: 12px 20px;
