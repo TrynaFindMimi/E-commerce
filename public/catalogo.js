@@ -1,3 +1,4 @@
+import { ProductosProxy } from '/proxyProductos.js';
 document.addEventListener('DOMContentLoaded', function() {
     const contenedorDestacados = document.getElementById('catalogo');
 
@@ -31,9 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "login.html";
     }
 
-
-    fetch('http://localhost:3000/productos')
-        .then(response => response.json())
+    ProductosProxy.productos
         .then(productos => {
             productos.forEach(producto => {
                 const articulo = document.createElement('div');

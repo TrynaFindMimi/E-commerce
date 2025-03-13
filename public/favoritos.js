@@ -1,3 +1,4 @@
+import { ProductosProxy } from '/proxyProductos.js';
 document.addEventListener("DOMContentLoaded", () => {
     const favoritosContainer = document.querySelector(".lista-favoritos");
 
@@ -24,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function loadProductos() {
-        fetch('http://localhost:3000/productos')
-            .then(response => response.json())
+        ProductosProxy.productos
             .then(items => {
                 productos = [...items]; 
                 getProductosfavoritos()

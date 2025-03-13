@@ -1,3 +1,4 @@
+import { ProductosProxy } from '/proxyProductos.js';
 document.addEventListener('DOMContentLoaded', function() {
     const subtotal = document.getElementById('subtotal');
     const totalCompra = document.getElementById('total');
@@ -5,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
     let productos = [];
     function loadProductos() {
-        fetch('http://localhost:3000/productos')
-            .then(response => response.json())
+        ProductosProxy.productos
             .then(items => {
                 productos = [...items]; 
                 getProductosCarrito()

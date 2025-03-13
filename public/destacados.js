@@ -1,4 +1,4 @@
-import { ProductosProxy } from '/proxyProductos.js';
+import { ProductosDestacadosProxy } from '/proxyProductos.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const contenedorDestacados = document.getElementById('destacados');
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    ProductosProxy.productos           
+    ProductosDestacadosProxy.productos           
     .then(productos => {
             productos.forEach(producto => {
                 const articulo = document.createElement('div');

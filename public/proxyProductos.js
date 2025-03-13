@@ -1,5 +1,5 @@
-export const ProductosProxy = (() => {
-    let cache = JSON.parse(localStorage.getItem('productosCache')) || null;
+export const ProductosDestacadosProxy = (() => {
+    let cache = JSON.parse(localStorage.getItem('productosDestacadosCache')) || null;
 
     return new Proxy({}, {
         get: function (target, prop) {
@@ -13,11 +13,24 @@ export const ProductosProxy = (() => {
                         .then(response => response.json())
                         .then(data => {
                             cache = data;
-                            localStorage.setItem('productosCache', JSON.stringify(data));
+                            localStorage.setItem('productosDestacadosCache', JSON.stringify(data));
                             return data;
                         });
                 }
             }
+        }
+    });
+})();
+export const ProductosProxy = (() => {
+
+    return new Proxy({}, {
+        get: function (target, prop) {
+            console.log("Obteniendo productos desde el servidor...");
+            return fetch('http://localhost:3000/productos')
+                .then(response => response.json())
+                .then(data => {
+                    return data;
+                });
         }
     });
 })();
