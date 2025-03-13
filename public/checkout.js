@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalCompra = document.getElementById('total');
     const totalPagarElement = document.getElementById('total-pagar'); 
     const carrito = JSON.parse(localStorage.getItem('productosCarrito')) || [];
-    const formTarjeta = document.getElementById('form-tarjeta');
+    const numeroTarjeta = document.getElementById('numero-tarjeta');
+    const fechaExpiracion = document.getElementById('fecha-expiracion');
+    const cvv = document.getElementById('cvv');
+    
+    //const formTarjeta = document.getElementById('form-tarjeta');
     let productos = [];
     let total = 0;
     let fechaCompra = "";
@@ -16,6 +20,44 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error:', error));
     }
+
+    function validarTarjeta() {
+        const tarjetaRegex = /^\d{16}$/;
+        return tarjetaRegex.test(numeroTarjeta.value.replace(/\s+/g, ''));
+    }
+    
+    function validarFechaExpiracion() {
+        const fechaRegex = /^(0[1-9]|1[0-2])\/(\d{2})$/;
+        if (!fechaRegex.test(fechaExpiracion.value)) return false;
+        
+        const [mes, año] = fechaExpiracion.value.split('/').map(num => parseInt(num, 10));
+        const añoActual = new Date().getFullYear() % 100;
+        const mesActual = new Date().getMonth() + 1;
+        
+        return (año > añoActual || (año === añoActual && mes >= mesActual));
+    }
+    
+    function validarCVV() {
+        const cvvRegex = /^\d{3}$/;
+        return cvvRegex.test(cvv.value);
+    }
+    
+    function validarFormulario() {
+        if (!validarTarjeta()) {
+            alert('El número de tarjeta debe contener 16 dígitos.');
+            return false;
+        }
+        if (!validarFechaExpiracion()) {
+            alert('La fecha de expiración no es válida o ya expiró.');
+            return false;
+        }
+        if (!validarCVV()) {
+            alert('El CVV debe contener 3 dígitos.');
+            return false;
+        }
+        return true;
+    }
+
     function getProductosCarrito() {
         const productosEnCarrito = productos.filter(producto => 
                     carrito.some(item => item.id === producto.id));   
@@ -67,6 +109,15 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.pagar').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const accion = e.target.dataset.accion;
+    
+                // Verificar si el botón es el de pago con tarjeta
+                if (accion === "Tarjeta de credito") {
+                    if (!validarFormulario()) {
+                        alert("Datos de tarjeta inválidos.");
+                        return;
+                    }
+                }
+                
                 pagar(accion);
             });
         });
